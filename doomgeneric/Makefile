@@ -12,11 +12,17 @@ else
 endif
 
 
-CC=clang  # gcc or g++
-CFLAGS+=-ggdb3 -Os
-LDFLAGS+=-Wl,--gc-sections
-CFLAGS+=-ggdb3 -Wall -DNORMALUNIX -DLINUX -DSNDSERV -D_DEFAULT_SOURCE # -DUSEASM
-LIBS+=-lm -lc -lX11
+# CC=clang  # gcc or g++
+# CFLAGS+=-ggdb3 -Os
+# LDFLAGS+=-Wl,--gc-sections
+# CFLAGS+=-ggdb3 -Wall -DNORMALUNIX -DLINUX -DSNDSERV -D_DEFAULT_SOURCE # -DUSEASM
+# LIBS+=-lm -lc -lX11
+
+CC := gcc
+CFLAGS := -m32 -ffreestanding -fno-asynchronous-unwind-tables -nostdlib -fno-PIC
+LDFLAGS := -Wl,--oformat=binary -Wl,-Ttext=0x1000 -Wl,--nmagic
+
+LIBC_32BIT := libc.a
 
 # subdirectory for objects
 OBJDIR=build
@@ -36,7 +42,7 @@ clean:
 $(OUTPUT):	$(OBJS)
 	@echo [Linking $@]
 	$(VB)$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) \
-	-o $(OUTPUT) $(LIBS) -Wl,-Map,$(OUTPUT).map
+	-o $(OUTPUT) -Wl,-Map,$(OUTPUT).map $(LIBC_32BIT)
 	@echo [Size]
 	-$(CROSS_COMPILE)size $(OUTPUT)
 
