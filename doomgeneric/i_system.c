@@ -271,7 +271,10 @@ void I_Quit (void)
 
 static int ZenityAvailable(void)
 {
-    return system(ZENITY_BINARY " --help >/dev/null 2>&1") == 0;
+    // return system(ZENITY_BINARY " --help >/dev/null 2>&1") == 0;
+
+    // Zenity is not available our VM!
+    return 0;
 }
 
 // Escape special characters in the given string so that they can be
@@ -327,24 +330,27 @@ static int ZenityErrorBox(char *message)
     char *errorboxpath;
     static size_t errorboxpath_size;
 
+    // ZenityAvailable() returns 0
     if (!ZenityAvailable())
     {
         return 0;
     }
 
-    escaped_message = EscapeShellString(message);
+    return 0;
 
-    errorboxpath_size = strlen(ZENITY_BINARY) + strlen(escaped_message) + 19;
-    errorboxpath = malloc(errorboxpath_size);
-    M_snprintf(errorboxpath, errorboxpath_size, "%s --error --text=%s",
-               ZENITY_BINARY, escaped_message);
+    // escaped_message = EscapeShellString(message);
 
-    result = system(errorboxpath);
+    // errorboxpath_size = strlen(ZENITY_BINARY) + strlen(escaped_message) + 19;
+    // errorboxpath = malloc(errorboxpath_size);
+    // M_snprintf(errorboxpath, errorboxpath_size, "%s --error --text=%s",
+    //            ZENITY_BINARY, escaped_message);
 
-    free(errorboxpath);
-    free(escaped_message);
+    // result = system(errorboxpath);
 
-    return result;
+    // free(errorboxpath);
+    // free(escaped_message);
+
+    // return result;
 }
 
 #endif /* !defined(_WIN32) && !defined(__MACOSX__) && !defined(__DJGPP__) */
