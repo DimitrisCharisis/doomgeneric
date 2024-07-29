@@ -37,6 +37,7 @@ all:	 $(OUTPUT)
 
 clean:
 	rm -rf $(OBJDIR)
+	rm -f $(LIBC_32BIT)
 	rm -f $(OUTPUT)
 	rm -f $(OUTPUT).gdb
 	rm -f $(OUTPUT).map
