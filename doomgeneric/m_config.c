@@ -1564,6 +1564,8 @@ static default_t *SearchCollection(default_collection_t *collection, char *name)
 {
     int i;
 
+    puts("numdefaults = ");
+    putint((int)collection->numdefaults);
     for (i=0; i<collection->numdefaults; ++i) 
     {
         if (!strcmp(name, collection->defaults[i].name))
