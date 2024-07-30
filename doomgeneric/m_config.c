@@ -1564,8 +1564,8 @@ static default_t *SearchCollection(default_collection_t *collection, char *name)
 {
     int i;
 
-    puts("numdefaults = ");
-    putint((int)collection->numdefaults);
+    // puts("numdefaults = ");
+    // putint((int)collection->numdefaults);
     for (i=0; i<collection->numdefaults; ++i) 
     {
         if (!strcmp(name, collection->defaults[i].name))
@@ -1938,6 +1938,7 @@ void M_LoadDefaults (void)
 
 static default_t *GetDefaultForName(char *name)
 {
+    printf("name = %s\n", name);
     default_t *result;
 
     // Try the main list and the extras
@@ -1967,6 +1968,7 @@ void M_BindVariable(char *name, void *location)
 {
     default_t *variable;
 
+    printf("From M_BindVariable\n");
     variable = GetDefaultForName(name);
 
     variable->location = location;
@@ -1980,6 +1982,7 @@ boolean M_SetVariable(char *name, char *value)
 {
     default_t *variable;
 
+    printf("From M_SetVariable\n");
     variable = GetDefaultForName(name);
 
     if (variable == NULL || !variable->bound)
@@ -1998,6 +2001,7 @@ int M_GetIntVariable(char *name)
 {
     default_t *variable;
 
+    printf("From M_GetIntVariable\n");
     variable = GetDefaultForName(name);
 
     if (variable == NULL || !variable->bound
@@ -2013,6 +2017,7 @@ const char *M_GetStrVariable(char *name)
 {
     default_t *variable;
 
+    printf("From M_GetStrVariable\n");
     variable = GetDefaultForName(name);
 
     if (variable == NULL || !variable->bound
@@ -2028,6 +2033,7 @@ float M_GetFloatVariable(char *name)
 {
     default_t *variable;
 
+    printf("From M_GetFloatVariable\n");
     variable = GetDefaultForName(name);
 
     if (variable == NULL || !variable->bound
