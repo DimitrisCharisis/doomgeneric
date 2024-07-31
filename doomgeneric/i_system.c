@@ -474,6 +474,7 @@ void I_Error (char *error, ...)
 #else
     while (true)
     {
+            /* printf("YEAP!\n"); */
     }
 #endif
 }

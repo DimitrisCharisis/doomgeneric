@@ -1319,7 +1319,7 @@ void D_DoomMain (void)
     {
         // Auto-detect the configuration dir.
 
-        // M_SetConfigDir(NULL);
+        M_SetConfigDir(NULL);
     }
 
     //!
@@ -1555,7 +1555,7 @@ void D_DoomMain (void)
     else
 #endif
     {
-        savegamedir = NULL;
+        savegamedir = M_GetSaveGameDir(D_SaveGameIWADName(gamemission));
     }
 
     // Check for -file in shareware

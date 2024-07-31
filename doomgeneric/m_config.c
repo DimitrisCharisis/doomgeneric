@@ -1938,7 +1938,7 @@ void M_LoadDefaults (void)
 
 static default_t *GetDefaultForName(char *name)
 {
-    printf("name = %s\n", name);
+    // printf("name = %s\n", name);
     default_t *result;
 
     // Try the main list and the extras
@@ -1968,7 +1968,7 @@ void M_BindVariable(char *name, void *location)
 {
     default_t *variable;
 
-    printf("From M_BindVariable\n");
+    // printf("From M_BindVariable\n");
     variable = GetDefaultForName(name);
 
     variable->location = location;

@@ -18,11 +18,10 @@
 //
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-#include <errno.h>
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+// #include <ctype.h>
 
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -32,8 +31,8 @@
 #include <direct.h>
 #endif
 #else
-#include <sys/stat.h>
-#include <sys/types.h>
+// #include <sys/stat.h>
+// #include <sys/types.h>
 #endif
 
 #include "doomtype.h"
@@ -47,6 +46,14 @@
 #include "v_video.h"
 #include "w_wad.h"
 #include "z_zone.h"
+
+typedef unsigned mode_t;
+
+extern int mkdir(const char *pathname, mode_t mode);
+extern size_t strlen(const char *s);
+
+extern int errno;
+#define EISDIR 21
 
 //
 // Create a directory
